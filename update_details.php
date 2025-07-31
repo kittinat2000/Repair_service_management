@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+include 'navbar.php';
 require 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
@@ -48,7 +48,6 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
 </head>
 
 <body>
-  <?php include 'navbar.php'; ?>
   <div class="container" style="margin-top: 30px;">
     <div class="card">
       <a class="header">Update Service</a>

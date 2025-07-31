@@ -1,7 +1,5 @@
 <?php
-require 'config.php';
-
-
+include 'navbar.php';
 
 // รวมยอดแจ้งซ่อมทั้งหมดและแยกตามแผนกและสถานะ
 $statusCounts = [
@@ -34,7 +32,7 @@ $recentRepairs = $recentStmt->fetchAll();
 </head>
 
 <body>
-  <?php include 'navbar.php'; ?>
+  
   <div style="margin: 0 60px">
     <h1 class="head">Dashboard</h1>
     <div class="dashboard-card-box">

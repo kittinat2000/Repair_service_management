@@ -1,16 +1,25 @@
 <?php
 require 'config.php';
 
+$error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $stmt = $pdo->prepare("SELECT * FROM users WHERE username=?");
+  $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
   $stmt->execute([$username]);
   $user = $stmt->fetch();
 
   if ($user && password_verify($password, $user['password'])) {
-    $_SESSION['user'] = $user;
+    // สร้าง session
+    session_regenerate_id(true); // ป้องกัน session fixation
+    $_SESSION['user'] = [
+      'id'       => $user['id'],
+      'username' => $user['username'],
+      'role'     => $user['role'],
+      'allowed_pages' => $user['allowed_pages']
+    ];
     header("Location: dashboard.php");
     exit;
   } else {

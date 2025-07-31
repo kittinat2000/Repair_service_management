@@ -7,8 +7,8 @@ function generateCaseNumber($pdo) {
     return $date . '-' . $count;
 }
 
-function isLoggedIn() {
-    return isset($_SESSION['user']);
+function isLoggedIn(): bool {
+  return !empty($_SESSION['user']); // แค่มี user ใน session ก็ถือว่าอยู่
 }
 
 function checkRole($role) {

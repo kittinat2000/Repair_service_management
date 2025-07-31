@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+include 'navbar.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,6 @@ require 'config.php';
   <title>Report</title>
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
   <h1 class="head">Report</h1>
 	<div class="container mt-3">
 		<div class="row" style="margin-top: 20px;">

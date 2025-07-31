@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+include 'navbar.php';
 require 'functions.php';
 
 if (!isLoggedIn()) redirect('login.php');
@@ -108,7 +108,6 @@ $repairs = $stmt->fetchAll();
 </head>
 
 <body>
-  <?php include 'navbar.php'; ?>
   <h1 class="head">แจ้งซ่อม <?= htmlspecialchars($target) ?></h1>
   <?php include 'assets/filter.php'; ?>
   <table border="1" cellpadding="5">
