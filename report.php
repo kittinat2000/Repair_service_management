@@ -1,5 +1,5 @@
 <?php
-include 'navbar.php';
+require 'config.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ include 'navbar.php';
 				<form action="function/daily_report_select_date.php" method="POST">
 					<h6>รายงานผล ณ ช่วงเวลาที่เลือก </h6>
 					<div class="row">
-						<div class="col-6">
+						<div class="col-6">ss
 							<div class="mb-3">
 								<label for="startDate" class="form-label">วันที่เริ่มต้น:</label>
 								<input type="date" id="startDate" name="start_date" class="form-control" required>

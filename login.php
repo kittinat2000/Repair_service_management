@@ -1,26 +1,23 @@
 <?php
-require 'config.php';
+session_start();
+require 'config.php'; // ไฟล์เชื่อมต่อฐานข้อมูล
 
 $error = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $username = $_POST['username'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $username = trim($_POST['username']);
   $password = $_POST['password'];
 
-  $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-  $stmt->execute([$username]);
-  $user = $stmt->fetch();
+  $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+  $stmt->bind_param("s", $username);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $user = $result->fetch_assoc();
 
   if ($user && password_verify($password, $user['password'])) {
-    // สร้าง session
-    session_regenerate_id(true); // ป้องกัน session fixation
-    $_SESSION['user'] = [
-      'id'       => $user['id'],
-      'username' => $user['username'],
-      'role'     => $user['role'],
-      'allowed_pages' => $user['allowed_pages']
-    ];
-    header("Location: dashboard.php");
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['role'] = $user['role'];
+    header("Location: manage_cases.php");
     exit;
   } else {
     $error = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
@@ -28,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!-- CSS เฉพาะสำหรับหน้า login -->
 <link rel="stylesheet" href="assets/style_login.css">
 
 <!DOCTYPE html>
@@ -37,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="utf-8">
   <title>Login</title>
+  <link rel="stylesheet" href="assets/style_back_office.css">
 </head>
 
 <body>
@@ -44,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="login wrap">
     <div class="h1">Login</div>
     <div class="logo">
-      <img src="assets/logo_luckybbq.png" alt="Logo">
-      <img src="assets/miracleplanet.jpeg" alt="Logo">
-      <img src="assets/logo_luckysuki.png" alt="Logo">
+      <img src="assets/img/logo_luckybbq.png" alt="Logo">
+      <img src="assets/img/miracleplanet-transparent-white.png" alt="Logo">
+      <img src="assets/img/logo_luckysuki.png" alt="Logo">
     </div>
     <form action="" method="post">
       <input placeholder="Username" id="username" name="username" type="text">
@@ -61,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       });
     </script>
   <?php endif; ?>
+
+  <?php include "loading.php"; ?>
 </body>
 
 </html>

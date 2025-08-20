@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Miracleplanet Repair Service</title>
+<title>MiraclePlanet Repair Management</title>
 <style>
   html, body, iframe {
     margin: 0;
@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<iframe src="../index.php" frameborder="0"></iframe>
+<iframe src="../manage_cases.php" frameborder="0"></iframe>
 
 </body>
 </html>

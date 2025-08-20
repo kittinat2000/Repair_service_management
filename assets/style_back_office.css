@@ -1,0 +1,24 @@
+body {
+    padding-bottom: 70px; /* กันปุ่มล่างบังเนื้อหา */
+    padding-top: 40px;
+      /* เว้นที่ให้ Navbar fixed-top */
+    background-color: #f8f9fa;
+}
+
+.card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: 0.2s;
+}
+
+    /* หน้าจอโหลด */
+    #loadingOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 255, 255, 0.8);
+      z-index: 9999;
+      display: none; /* ซ่อนก่อน */
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
