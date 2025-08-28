@@ -75,18 +75,11 @@ $result = $stmt->get_result();
               <td><?= htmlspecialchars($row['contact']) ?></td>
               <td><?= htmlspecialchars($row['status']) ?></td>
               <td>
+
                 <!-- เปลี่ยนสถานะ -->
-                <form action="function/process_case.php" method="POST" class="d-inline">
-                  <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                  <input type="hidden" name="action" value="change_status">
-                  <?php if ($row['status'] != 'เสร็จสิ้น'): ?>
-                    <button type="submit" class="btn btn-success btn-sm">เสร็จสิ้น</button>
-                  <?php endif; ?>
-                  <?php if ($row['status'] != 'กำลังดำเนินการ'): ?>
-                    <input type="hidden" name="new_status" value="กำลังดำเนินการ">
-                    <button type="submit" class="btn btn-warning btn-sm">ดำเนินการ</button>
-                  <?php endif; ?>
-                </form>
+                 <a href="update_case.php?id=<?= htmlspecialchars($row['id']) ?>">
+                  <button type="submit" class="btn btn-warning btn-sm">ดำเนินการ</button>
+                </a>
 
                 <!-- เปลี่ยน target -->
                 <form action="function/process_case.php" method="POST" class="d-inline">
